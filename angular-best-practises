@@ -1,0 +1,40 @@
+#!/bin/bash
+
+FILES=$(ls -la | grep angular.json)
+if [ -z "$FILES" ]; then
+  echo "ERROR: This script can only be used within the angular project directory!"
+  exit 1;
+fi
+echo "applying best practises"
+
+ROOT=$(pwd)
+
+# change to eslint
+echo "> Installing eslint"
+ng add @angular-eslint/schematics
+ng g @angular-eslint/schematics:convert-tslint-to-eslint
+ 
+# change project structure
+echo "> Creating new Project structure"
+cd src/app
+mkdir shared ui-components view
+
+cd shared
+mkdir enums models services validators
+
+cd ../view
+mkdir public restricted
+
+cd ../../assets
+mkdir images fonts scss
+
+# move styles.scss to assets/scss
+echo "> Changing location of styles.scss"
+cd $ROOT
+mv src/styles.scss src/assets/scss/
+sed -i 's|src/styles.scss|src/assets/scss/styles.scss|g' angular.json 
+
+# create style files
+echo "> Creating style files"
+cd src/assets/scss 
+touch colors.scss layout.scss fonts.scss forms.scss animations.scss
