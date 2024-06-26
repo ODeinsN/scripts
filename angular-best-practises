@@ -9,10 +9,9 @@ echo "applying best practises"
 
 ROOT=$(pwd)
 
-# change to eslint
-echo "> Installing eslint"
-ng add @angular-eslint/schematics
-ng g @angular-eslint/schematics:convert-tslint-to-eslint
+# adding assets dir
+echo "> Creating 'assets' directory"
+mkdir src/assets
  
 # change project structure
 echo "> Creating new Project structure"
