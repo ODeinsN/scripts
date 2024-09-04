@@ -20,4 +20,9 @@ cd $HOME
 $config checkout -f
 $config config --local status.showUntrackedFiles no
 
+$header "setting up SSH"
+mkdir .ssh
+cd .ssh
+ssh-keygen -t ed25519
+
 $header "done"
