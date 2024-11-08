@@ -14,10 +14,10 @@ chsh -s $(which zsh)
 $header "setting up dotfiles"
 git clone --bare https://github.com/odeinsn/dotfiles $HOME/dotfiles
 
-config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+config="/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME"
 
-$config checkout -f
-$config config --local status.showUntrackedFiles no
+"$config" checkout -f
+"$config" config --local status.showUntrackedFiles no
 
 $header "setting up SSH"
 mkdir .ssh
